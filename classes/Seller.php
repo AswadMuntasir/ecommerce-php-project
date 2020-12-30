@@ -87,7 +87,7 @@ class Seller
 
     public function getSellerData($id)
     {
-        $query = "SELECT * FROM tbl_seller WHERE Id = '$id'";
+        $query = "SELECT * FROM tbl_seller WHERE sellerId = '$id'";
         $result = $this->db->select($query);
         return $result;
     }

@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                     </form>
                     <?php 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
-    $customerReg = $cmr->customerRegistration($_POST);
-}
-?>
+				if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
+				    $customerReg = $cmr->customerRegistration($_POST);
+				}
+				?>
     	<div class="register_account">
     		<?php 
             if (isset($customerReg)) {
