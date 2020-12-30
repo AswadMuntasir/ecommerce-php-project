@@ -136,4 +136,17 @@ class Customer
             }
         }
     }
+
+    public function delCusById($id)
+    {
+        $delquery = "DELETE FROM tbl_customers WHERE id = '$id'";
+        $deldata = $this->db->delete($delquery);
+        if ($deldata) {
+            $msg = "<span class='success'>Customer Deleted Successfully</span>";
+            return $msg;
+        } else {
+            $msg = "<span class='error'>Customer Not Deleted!</span>";
+            return $msg;
+        }
+    }
 }

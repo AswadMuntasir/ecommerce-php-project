@@ -76,7 +76,7 @@ class Seller
         if ($result != false) {
             $value = $result->fetch_assoc();
             Session::set("slogin", true);
-            Session::set("sId", $value['id']);
+            Session::set("sId", $value['sellerId']);
             Session::set("sName", $value['sellerName']);
             header("Location:deshboard.php");
         } else {
@@ -87,7 +87,7 @@ class Seller
 
     public function getSellerData($id)
     {
-        $query = "SELECT * FROM tbl_seller WHERE id = '$id'";
+        $query = "SELECT * FROM tbl_seller WHERE Id = '$id'";
         $result = $this->db->select($query);
         return $result;
     }
@@ -125,7 +125,7 @@ class Seller
             sellerZip     = '$sellerZip',
             sellerPhone   = '$sellerPhone',
             sellerEmail   = '$sellerEmail'
-            WHERE id = '$sId'";
+            WHERE sellerId = '$sId'";
             $updated_row = $this->db->update($query);
             if ($updated_row) {
                 $msg = "<span class='success'>Seller Data Update Successfully</span>";
@@ -134,6 +134,19 @@ class Seller
                 $msg = "<span class='error'>Seller Data Not Updated.</span>";
                 return $msg;
             }
+        }
+    }
+
+    public function delSById($id)
+    {
+        $delquery = "DELETE FROM tbl_seller WHERE sellerId = '$id'";
+        $deldata = $this->db->delete($delquery);
+        if ($deldata) {
+            $msg = "<span class='success'>Seller Deleted Successfully</span>";
+            return $msg;
+        } else {
+            $msg = "<span class='error'>Seller Not Deleted!</span>";
+            return $msg;
         }
     }
 }
