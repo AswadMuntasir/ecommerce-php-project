@@ -26,13 +26,13 @@ if (isset($_GET['delpro'])) {
 			<thead>
 				<tr>
 					<th>Sl</th>
-					<th>Product Name</th>
-					<th>Category</th>
-					<th>Brand</th>
-					<th>Description</th>
-					<th>Price</th>
-					<th>Image</th>
-					<th>Type</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>Zip</th>
+					<th>Email</th>
+					<th>Country</th>
+					<th>Phone</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -45,12 +45,13 @@ if (isset($_GET['delpro'])) {
                         $i++; ?>
 				<tr class="odd gradeX">
 					<td><?php echo $i; ?></td>
-					<td><?php echo $result['productName']; ?></td>
-					<td><?php echo $result['catName']; ?></td>
-					<td><?php echo $result['brandName']; ?></td>
-					<td><?php echo $fm->textShorten($result['body'], 50); ?></td>
-					<td><?php echo $result['price']; ?></td>
-					<td><img src="<?php echo $result['image']; ?>" height="40px" width="60px"></td>					
+					<td><?php echo $result['sellerName']; ?></td>
+					<td><?php echo $result['sellerAddress']; ?></td>
+					<td><?php echo $result['sellerCity']; ?></td>
+					<td><?php echo $result['sellerZip']; ?></td>
+					<td><?php echo $result['sellerEmail']; ?></td>
+					<td><?php echo $result['sellerCountry']; ?></td>
+					td><?php echo $result['sellerPhone']; ?></td>				
 					<td>
 						<?php 
                         
@@ -61,7 +62,7 @@ if (isset($_GET['delpro'])) {
                         } ?>
 							
 						</td>					
-					<td><a href="productedit.php?proid=<?php echo $result['productId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?delpro=<?php echo $result['productId']; ?>">Delete</a></td>
+					<td><a href="selleredit.php?sid=<?php echo $result['sellerId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?delpro=<?php echo $result['sellerId']; ?>">Delete</a></td>
 				</tr>
 				<?php
                     }
