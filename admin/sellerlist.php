@@ -1,15 +1,15 @@
 ﻿<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
-<?php include '../classes/Product.php'; ?>
+<?php include '../classes/Seller.php'; ?>
 <?php include_once '../helpers/Format.php'; ?>
 <?php 
-$pd = new Product();
+$pd = new Seller();
 $fm = new Format();
  ?>
  <?php 
-if (isset($_GET['delpro'])) {
-    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delpro']);
-    $delPro = $pd->delProById($id);
+if (isset($_GET['dels'])) {
+    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['dels']);
+    $delS = $pd->delSById($id);
 }
  ?>
 
@@ -17,8 +17,8 @@ if (isset($_GET['delpro'])) {
     <div class="box round first grid">
         <h2>Post List</h2>
         <?php 
-                if (isset($delPro)) {
-                    echo $delPro;
+                if (isset($delS)) {
+                    echo $delS;
                 }
                  ?>
         <div class="block">  
@@ -38,10 +38,10 @@ if (isset($_GET['delpro'])) {
 			</thead>
 			<tbody>
 				<?php 
-                $getPd = $pd->getAllProduct();
-                if ($getPd) {
+                $gets = $pd->getSellerData();
+                if ($gets) {
                     $i=0;
-                    while ($result = $getPd->fetch_assoc()) {
+                    while ($result = $gets->fetch_assoc()) {
                         $i++; ?>
 				<tr class="odd gradeX">
 					<td><?php echo $i; ?></td>
@@ -62,7 +62,7 @@ if (isset($_GET['delpro'])) {
                         } ?>
 							
 						</td>					
-					<td><a href="selleredit.php?sid=<?php echo $result['sellerId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?delpro=<?php echo $result['sellerId']; ?>">Delete</a></td>
+					<td><a href="selleredit.php?sid=<?php echo $result['sellerId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?dels=<?php echo $result['sellerId']; ?>">Delete</a></td>
 				</tr>
 				<?php
                     }
