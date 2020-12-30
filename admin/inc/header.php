@@ -15,7 +15,7 @@ $cat = new Category();
 $cmr = new Customer();
 $Sle = new Seller();
 $dBoy = new DeliveryBoy();
-//$odr = new Order();
+$Odr = new Order();
 
  ?>
 <?php
