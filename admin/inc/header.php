@@ -15,6 +15,7 @@ $cat = new Category();
 $cmr = new Customer();
 $Sle = new Seller();
 $dBoy = new DeliveryBoy();
+//$odr = new Order();
 
  ?>
 <?php
@@ -72,7 +73,6 @@ $dBoy = new DeliveryBoy();
                          ?>
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
-                           
                             <li><a href="?action=logout">Logout</a></li>
                         </ul>
                     </div>

@@ -51,7 +51,7 @@ $D = new DeliveryBoy();
   <div class="wrap">
     <div class="header_top">
       <div class="logo">
-        <a href="index.php"><h1 style="font-size:50px;color:green;">TrNs Online Shope</h1></a>
+        <a href="index.php"><h1 style="font-size:50px;color:green;">E-Commerce Online Shoping</h1></a>
       </div>
         <div class="header_top_right">
           <div class="search_box">
