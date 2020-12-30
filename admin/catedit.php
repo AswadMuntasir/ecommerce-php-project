@@ -1,6 +1,5 @@
 <?php include 'inc/header.php'; ?>
 <?php include 'inc/sidebar.php'; ?>
-<?php include '../classes/Category.php'; ?>
 <?php
 if (!isset($_GET['catid']) || $_GET['catid'] == null) {
     echo "<script>window.location = 'catlist.php';</script>";

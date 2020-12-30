@@ -1,6 +1,20 @@
 <?php 
 include '../lib/Session.php';
 Session::checkSession();
+include '../lib/Database.php';
+include '../helpers/Format.php';
+
+spl_autoload_register(function ($class) {
+    include_once "../classes/".$class.".php";
+});
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$ct = new Cart();
+$cat = new Category();
+$cmr = new Customer();
+$Sle = new Seller();
+$dBoy = new DeliveryBoy();
 
  ?>
 <?php

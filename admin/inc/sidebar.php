@@ -27,8 +27,8 @@
                 </li>
                 <li><a class="menuitem">Delivery Boy Option</a>
                     <ul class="submenu">
-                        <li><a href="dboyadd.php">Add Delivery Boy</a></li>
-                        <li><a href="dboylist.php">Delivery Boy List</a></li>
+                        <li><a href="deliveryboyadd.php">Add Delivery Boy</a></li>
+                        <li><a href="deliveryboylist.php">Delivery Boy List</a></li>
                     </ul>
                 </li>
             </ul>

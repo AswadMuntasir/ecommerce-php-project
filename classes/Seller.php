@@ -76,8 +76,8 @@ class Seller
         if ($result != false) {
             $value = $result->fetch_assoc();
             Session::set("slogin", true);
-            Session::set("sId", $value['sellerId']);
-            Session::set("sName", $value['sellerName']);
+            Session::set("SId", $value['sellerId']);
+            Session::set("SName", $value['sellerName']);
             header("Location:deshboard.php");
         } else {
             $msg = "<span class='error'>sellerEmail or sellerPassowrd not matched!</span>";
@@ -92,7 +92,14 @@ class Seller
         return $result;
     }
 
-    public function sellerUpdate($data, $sId)
+    public function getAllSeller()
+    {
+        $query = "SELECT * FROM tbl_seller";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function sellerUpdate($data, $SId)
     {
         $sellerName       = $this->fm->validation($data['sellerName']);
         $sellerAddress    = $this->fm->validation($data['sellerAddress']);
@@ -101,6 +108,7 @@ class Seller
         $sellerEmail      = $this->fm->validation($data['sellerEmail']);
         $sellerCountry    = $this->fm->validation($data['sellerCountry']);
         $sellerPhone      = $this->fm->validation($data['sellerPhone']);
+        $sellerPass      = $this->fm->validation($data['sellerPass']);
         
         
         $sellerName       = mysqli_real_escape_string($this->db->link, $sellerName);
@@ -110,22 +118,14 @@ class Seller
         $sellerEmail      = mysqli_real_escape_string($this->db->link, $sellerEmail);
         $sellerCountry    = mysqli_real_escape_string($this->db->link, $sellerCountry);
         $sellerPhone      = mysqli_real_escape_string($this->db->link, $sellerPhone);
+        $sellerPass       = mysqli_real_escape_string($this->db->link, md5($sellerPass));
         
 
-        if ($sellerName == "" || $sellerAddress == "" || $sellerCity == "" || $sellerZip == "" || $sellerEmail == "" || $sellerCountry == "" || $sellerPhone == "") {
+        if ($sellerName == "" || $sellerAddress == "" || $sellerCity == "" || $sellerZip == "" || $sellerEmail == "" || $sellerCountry == "" || $sellerPhone == "" || $sellerPass == "") {
             $msg = "<span class='error'>Fields must not be empty!</span>";
             return $msg;
         } else {
-            $query = "UPDATE tbl_seller
-            SET
-            sellerName    = '$sellerName',
-            sellerAddress = '$sellerAddress',
-            sellerCity    = '$sellerCity',
-            sellerCountry = '$sellerCountry',
-            sellerZip     = '$sellerZip',
-            sellerPhone   = '$sellerPhone',
-            sellerEmail   = '$sellerEmail'
-            WHERE sellerId = '$sId'";
+            $query = "UPDATE tbl_seller SET sellerName = '$sellerName', sellerAddress = '$sellerAddress', sellerCity = '$sellerCity', sellerCountry = '$sellerCountry', sellerZip = '$sellerZip', sellerPhone = '$sellerPhone', sellerEmail = '$sellerEmail', sellerPass = '$sellerPass' WHERE sellerId = '$SId'";
             $updated_row = $this->db->update($query);
             if ($updated_row) {
                 $msg = "<span class='success'>Seller Data Update Successfully</span>";

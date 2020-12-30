@@ -1,13 +1,12 @@
 ﻿<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
-<?php include '../classes/Seller.php'; ?>
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Add New Seller</h2>
         <div class="block">
         <?php 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
-                $sellerReg = $s->sellerRegistration($_POST);
+                $sellerReg = $Sle->sellerRegistration($_POST);
             }
         ?>
         <div class="register_account">
@@ -16,7 +15,7 @@
                     echo $sellerReg;
                 }
             ?>
-            <h3>Register New Account</h3>
+            <h3>Register a Seller Account</h3>
             <form action="" method="post">
                      <table>
                         <tbody>

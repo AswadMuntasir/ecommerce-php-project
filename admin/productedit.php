@@ -1,8 +1,5 @@
 <?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
-<?php include '../classes/Product.php'; ?>
-<?php include '../classes/Brand.php'; ?>
-<?php include '../classes/Category.php'; ?>
 <?php
 if (!isset($_GET['proid']) || $_GET['proid'] == null) {
     echo "<script>window.location = 'productlist.php';</script>";

@@ -15,6 +15,8 @@ $pd = new Product();
 $ct = new Cart();
 $cat = new Category();
 $cmr = new Customer();
+$Sle = new Seller();
+$D = new DeliveryBoy();
 
  ?>
 <?php

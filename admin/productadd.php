@@ -1,8 +1,5 @@
 ﻿<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
-<?php include '../classes/Product.php'; ?>
-<?php include '../classes/Brand.php'; ?>
-<?php include '../classes/Category.php'; ?>
 <?php 
 $pd = new Product();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {

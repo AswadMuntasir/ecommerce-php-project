@@ -92,6 +92,13 @@ class DeliveryBoy
         return $result;
     }
 
+    public function getAllDeliveryBoy()
+    {
+        $query = "SELECT * FROM tbl_deliveryboys";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
     public function dboyUpdate($data, $dId)
     {
         $dboyName       = $this->fm->validation($data['dboyName']);
@@ -101,6 +108,7 @@ class DeliveryBoy
         $dboyEmail      = $this->fm->validation($data['dboyEmail']);
         $dboyCountry    = $this->fm->validation($data['dboyCountry']);
         $dboyPhone      = $this->fm->validation($data['dboyPhone']);
+        $dboyPass       = $this->fm->validation($data['dboyPass']);
         
         
         $dboyName       = mysqli_real_escape_string($this->db->link, $dboyName);
@@ -110,6 +118,7 @@ class DeliveryBoy
         $dboyEmail      = mysqli_real_escape_string($this->db->link, $dboyEmail);
         $dboyCountry    = mysqli_real_escape_string($this->db->link, $dboyCountry);
         $dboyPhone      = mysqli_real_escape_string($this->db->link, $dboyPhone);
+        $dboyPass       = mysqli_real_escape_string($this->db->link, md5($dboyPass));
         
 
         if ($dboyName == "" || $dboyAddress == "" || $dboyCity == "" || $dboyZip == "" || $dboyEmail == "" || $dboyCountry == "" || $dboyPhone == "") {
@@ -124,7 +133,8 @@ class DeliveryBoy
             dboyCountry = '$dboyCountry',
             dboyZip     = '$dboyZip',
             dboyPhone   = '$dboyPhone',
-            dboyEmail   = '$dboyEmail'
+            dboyEmail   = '$dboyEmail',
+            dboyPass   = '$dboyPass'
             WHERE dboyId = '$dId'";
             $updated_row = $this->db->update($query);
             if ($updated_row) {
@@ -137,7 +147,7 @@ class DeliveryBoy
         }
     }
 
-    public function delDById($id)
+    public function deldBoyById($id)
     {
         $delquery = "DELETE FROM tbl_deliveryboys WHERE dboyId = '$id'";
         $deldata = $this->db->delete($delquery);

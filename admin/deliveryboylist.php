@@ -1,24 +1,22 @@
 ﻿<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
-<?php include '../classes/DeliveryBoy.php'; ?>
 <?php include_once '../helpers/Format.php'; ?>
 <?php 
-$pd = new DeliveryBoy();
 $fm = new Format();
  ?>
  <?php 
-if (isset($_GET['dels'])) {
-    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['dels']);
-    $delS = $pd->delDById($id);
+if (isset($_GET['deldBoy'])) {
+    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['deldBoy']);
+    $deldBoy = $dBoy->delDBoyById($id);
 }
  ?>
 
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Post List</h2>
+        <h2>Delivery Boy List</h2>
         <?php 
-                if (isset($delS)) {
-                    echo $delS;
+                if (isset($deldBoy)) {
+                    echo $deldBoy;
                 }
                  ?>
         <div class="block">  
@@ -38,10 +36,10 @@ if (isset($_GET['dels'])) {
 			</thead>
 			<tbody>
 				<?php 
-                $gets = $pd->getDeliveryBoyData();
-                if ($gets) {
+                $getdBoy = $dBoy->getAllDeliveryBoy();
+                if ($getdBoy) {
                     $i=0;
-                    while ($result = $gets->fetch_assoc()) {
+                    while ($result = $getdBoy->fetch_assoc()) {
                         $i++; ?>
 				<tr class="odd gradeX">
 					<td><?php echo $i; ?></td>
@@ -51,18 +49,8 @@ if (isset($_GET['dels'])) {
 					<td><?php echo $result['dboyZip']; ?></td>
 					<td><?php echo $result['dboyEmail']; ?></td>
 					<td><?php echo $result['dboyCountry']; ?></td>
-					td><?php echo $result['dboyPhone']; ?></td>
-					<td>
-						<?php 
-                        
-                        if ($result['type']==0) {
-                            echo "Featured";
-                        } else {
-                            echo "General";
-                        } ?>
-							
-						</td>					
-					<td><a href="dboyedit.php?sid=<?php echo $result['dboyId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?dels=<?php echo $result['dboyId']; ?>">Delete</a></td>
+					<td><?php echo $result['dboyPhone']; ?></td>					
+					<td><a href="deliveryboyedit.php?dboyId=<?php echo $result['dboyId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?deldBoy=<?php echo $result['dboyId']; ?>">Delete</a></td>
 				</tr>
 				<?php
                     }
