@@ -1,11 +1,11 @@
-<?php include '../classes/Adminlogin.php' ?>
+<?php include '../classes/Seller.php' ?>
 <?php 
-$al = new Adminlogin();
+$Sle = new Seller();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $adminUser = $_POST['adminUser'];
-    $adminPass = md5($_POST['adminPass']);
+    $sellerEmail = $_POST['sellerEmail'];
+    $sellerPass = md5($_POST['sellerPass']);
 
-    $loginChk= $al->adminLogin($adminUser, $adminPass);
+    $loginChk= $Sle->sellerLogin($sellerEmail, $sellerPass);
 }
 
 
@@ -13,14 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>Admin Login</title>
+<title>Seller Login</title>
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css" media="screen" />
 </head>
 <body>
 <div class="container">
 	<section id="content">
 		<form action="" method="post">
-			<h1>Admin Login</h1>
+			<h1>Seller Login</h1>
 			<span style="color:red; font-size:18px;">
 				<?php 
                 if (isset($loginChk)) {
@@ -29,14 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ?>
 			</span>
 			<div>
-				<input type="text" placeholder="Username" name="adminUser"/>
+				<input type="text" placeholder="Email" name="sellerEmail"/>
 			</div>
 			<div>
-				<input type="password" placeholder="Password" name="adminPass"/>
+				<input type="password" placeholder="Password" name="sellerPass"/>
 			</div>
 			<div>
 				<input type="submit" value="Log in" />
 			</div>
+		</form>
 
 	</section>
 </div>

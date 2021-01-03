@@ -14,12 +14,6 @@
                         <li><a href="productlist.php">Product List</a></li>
                     </ul>
                 </li>
-                <li><a class="menuitem">Seller Option</a>
-                    <ul class="submenu">
-                        <li><a href="selleradd.php">Add Seller</a></li>
-                        <li><a href="sellerlist.php">Seller List</a></li>
-                    </ul>
-                </li>
                 <li><a class="menuitem">Order Option</a>
                     <ul class="submenu">
                         <li><a href="orderlist.php">Order List</a></li>

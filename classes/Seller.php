@@ -1,5 +1,7 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
+include($filepath.'/../lib/Session.php');
+Session::checkLogin();
 include_once($filepath.'/../lib/Database.php');
 include_once($filepath.'/../helpers/Format.php');
  ?>
@@ -58,7 +60,7 @@ class Seller
             }
         }
     }
-
+/*
     public function sellerLogin($data)
     {
         $sellerEmail  = $this->fm->validation($data['sellerEmail']);
@@ -75,12 +77,39 @@ class Seller
         $result = $this->db->select($query);
         if ($result != false) {
             $value = $result->fetch_assoc();
-            Session::set("slogin", true);
-            Session::set("SId", $value['sellerId']);
-            Session::set("SName", $value['sellerName']);
-            header("Location:deshboard.php");
+            Session::set("Slelogin", true);
+            Session::set("SleId", $value['sellerId']);
+            Session::set("SleName", $value['sellerName']);
+            header("Location:dashboard.php");
         } else {
-            $msg = "<span class='error'>sellerEmail or sellerPassowrd not matched!</span>";
+            $msg = "<span class='error'>Email or Passowrd not matched!</span>";
+            return $msg;
+        }
+    }
+
+*/
+    public function sellerLogin($sellerEmail, $sellerPass)
+    {
+        $sellerEmail  = $this->fm->validation($sellerEmail);
+        $sellerPass   = $this->fm->validation($sellerPass);
+
+        $sellerEmail  = mysqli_real_escape_string($this->db->link, $sellerEmail);
+        $sellerPass   = mysqli_real_escape_string($this->db->link, $sellerPass);
+
+        if (empty($sellerEmail) || empty($sellerPass)) {
+            $msg = "<span class='error'>Fields must not be empty!</span>";
+            return $msg;
+        }
+        $query = "SELECT * FROM tbl_seller WHERE sellerEmail = '$sellerEmail' AND sellerPass = '$sellerPass'";
+        $result = $this->db->select($query);
+        if ($result != false) {
+            $value = $result->fetch_assoc();
+            Session::set("Slelogin", true);
+            Session::set("SEmail", $value['sellerEmail']);
+            Session::set("SName", $value['sellerName']);
+            header("Location:dashboard.php");
+        } else {
+            $msg = "<span class='error'>Seller Email or Seller Passowrd not matched!</span>";
             return $msg;
         }
     }

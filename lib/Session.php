@@ -19,6 +19,7 @@ class Session
 
     public static function set($key, $val)
     {
+        session_start();
         $_SESSION[$key] = $val;
     }
 
@@ -44,7 +45,26 @@ class Session
     {
         self::init();
         if (self::get("adminlogin") == true) {
+            self::destroy();
             header("Location:dashboard.php");
+        }
+    }
+
+    public static function checkSeller()
+    {
+        self::init();
+        if (self::get("sellerlogin") == false) {
+            self::destroy();
+            header("Location:login.php");
+        }
+    }
+
+    public static function checkDboy()
+    {
+        self::init();
+        if (self::get("dboylogin") == false) {
+            self::destroy();
+            header("Location:login.php");
         }
     }
 
