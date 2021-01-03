@@ -69,7 +69,7 @@ if (isset($_GET['delproid'])) {
                                 <?php
                                 } elseif ($result['status'] == '1') {
                                     ?> 
-                                <td>Pending</td>
+                                <td>Ok</td>
                                 <?php
                                 } else {
                                     ?>							

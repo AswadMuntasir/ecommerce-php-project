@@ -4,7 +4,7 @@
             <div class="box round first grid">
                 <h2> Dashbord</h2>
                 <div class="block">               
-                  Welcome admin panel        
+                  Welcome Delivery Boy panel        
                 </div>
             </div>
         </div>

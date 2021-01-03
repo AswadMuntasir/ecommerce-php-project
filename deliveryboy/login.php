@@ -1,26 +1,24 @@
-<?php include '../classes/Adminlogin.php' ?>
+<?php include '../classes/DeliveryBoy.php' ?>
 <?php 
-$al = new Adminlogin();
+$dBoy = new DeliveryBoy();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $adminUser = $_POST['adminUser'];
-    $adminPass = md5($_POST['adminPass']);
+    $dboyEmail = $_POST['dboyEmail'];
+    $dboyPass = md5($_POST['dboyPass']);
 
-    $loginChk= $al->adminLogin($adminUser, $adminPass);
+    $loginChk= $dBoy->dboyLogin($dboyEmail, $dboyPass);  
 }
-
-
  ?>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>Admin Login</title>
+<title>Seller Login</title>
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css" media="screen" />
 </head>
 <body>
 <div class="container">
 	<section id="content">
-		<form action="" method="post">
-			<h1>Admin Login</h1>
+		<form action="" method="POST">
+			<h1>Delivery Boy Login</h1>
 			<span style="color:red; font-size:18px;">
 				<?php 
                 if (isset($loginChk)) {
@@ -29,14 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ?>
 			</span>
 			<div>
-				<input type="text" placeholder="Username" name="adminUser"/>
+				<input type="text" placeholder="Email" name="dboyEmail"/>
 			</div>
 			<div>
-				<input type="password" placeholder="Password" name="adminPass"/>
+				<input type="password" placeholder="Password" name="dboyPass"/>
 			</div>
 			<div>
 				<input type="submit" value="Log in" />
 			</div>
+		</form>
 
 	</section>
 </div>

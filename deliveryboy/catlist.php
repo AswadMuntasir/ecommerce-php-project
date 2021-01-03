@@ -21,7 +21,6 @@ if (isset($_GET['delcat'])) {
 						<tr>
 							<th>Serial No.</th>
 							<th>Category Name</th>
-							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,7 +33,6 @@ if (isset($_GET['delcat'])) {
 						<tr class="odd gradeX">
 							<td><?php echo $i; ?></td>
 							<td><?php echo $result['catName']; ?></td>
-							<td><a href="catedit.php?catid=<?php echo $result['catId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?delcat=<?php echo $result['catId']; ?>">Delete</a></td>
 						</tr>
 						<?php
                             }

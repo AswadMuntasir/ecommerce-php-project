@@ -32,7 +32,6 @@ if (isset($_GET['delpro'])) {
 					<th>Price</th>
 					<th>Image</th>
 					<th>Type</th>
-					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,8 +58,7 @@ if (isset($_GET['delpro'])) {
                             echo "General";
                         } ?>
 							
-						</td>					
-					<td><a href="productedit.php?proid=<?php echo $result['productId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete this?')" href="?delpro=<?php echo $result['productId']; ?>">Delete</a></td>
+						</td>
 				</tr>
 				<?php
                     }

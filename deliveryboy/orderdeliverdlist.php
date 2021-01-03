@@ -36,7 +36,7 @@ if (isset($_GET['delOdr'])) {
 				</thead>
 				<tbody>
 					<?php
-                    $getOrder = $Odr->getOdrByStatus('1');
+                    $getOrder = $Odr->getOdrByStatus('2');
                     if ($getOrder) {
                         $i=0;
                         while ($result = $getOrder->fetch_assoc()) {
