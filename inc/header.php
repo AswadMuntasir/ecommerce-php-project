@@ -17,8 +17,7 @@ $cat = new Category();
 $cmr = new Customer();
 $Sle = new Seller();
 $D = new DeliveryBoy();
-
- ?>
+?>
 <?php
   header("Cache-Control: no-cache, must-revalidate");
   header("Pragma: no-cache");

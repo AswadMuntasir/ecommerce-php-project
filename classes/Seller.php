@@ -1,9 +1,9 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include($filepath.'/../lib/Session.php');
-Session::checkLogin();
 include_once($filepath.'/../lib/Database.php');
 include_once($filepath.'/../helpers/Format.php');
+include_once($filepath.'/../lib/Session.php');
+
  ?>
 <?php 
 
@@ -60,8 +60,35 @@ class Seller
             }
         }
     }
-/*
-    public function sellerLogin($data)
+
+    public function sellerLogin($sellerEmail, $sellerPass)
+    {
+        $sellerEmail = $this->fm->validation($sellerEmail);
+        $sellerPass = $this->fm->validation($sellerPass);
+        $sellerEmail = mysqli_real_escape_string($this->db->link, $sellerEmail);
+        $sellerPass = mysqli_real_escape_string($this->db->link, $sellerPass);
+
+        if (empty($sellerEmail) || empty($sellerPass)) {
+            $loginmsg = "Username or Password must not be empty!";
+            return $loginmsg;
+        } else {
+            $query = "SELECT * FROM tbl_seller WHERE sellerEmail = '$sellerEmail' AND sellerPass = '$sellerPass'";
+            $result = $this->db->select($query);
+            if ($result != false) {
+                $value = $result->fetch_assoc();
+                Session::set("sellerlogin", true);
+                Session::set("sellerId", $value['sellerId']);
+                Session::set("sellerEmail", $value['sellerEmail']);
+                Session::set("sellerPass", $value['sellerPass']);
+                header("Location:dashboard2.php");
+            } else {
+                $loginmsg = "Username or Password not match!";
+                return $loginmsg;
+            }
+        }
+    }
+
+    /*public function sellerLogin($data)
     {
         $sellerEmail  = $this->fm->validation($data['sellerEmail']);
         $sellerPass   = $this->fm->validation($data['sellerPass']);
@@ -77,42 +104,15 @@ class Seller
         $result = $this->db->select($query);
         if ($result != false) {
             $value = $result->fetch_assoc();
-            Session::set("Slelogin", true);
-            Session::set("SleId", $value['sellerId']);
-            Session::set("SleName", $value['sellerName']);
-            header("Location:dashboard.php");
-        } else {
-            $msg = "<span class='error'>Email or Passowrd not matched!</span>";
-            return $msg;
-        }
-    }
-
-*/
-    public function sellerLogin($sellerEmail, $sellerPass)
-    {
-        $sellerEmail  = $this->fm->validation($sellerEmail);
-        $sellerPass   = $this->fm->validation($sellerPass);
-
-        $sellerEmail  = mysqli_real_escape_string($this->db->link, $sellerEmail);
-        $sellerPass   = mysqli_real_escape_string($this->db->link, $sellerPass);
-
-        if (empty($sellerEmail) || empty($sellerPass)) {
-            $msg = "<span class='error'>Fields must not be empty!</span>";
-            return $msg;
-        }
-        $query = "SELECT * FROM tbl_seller WHERE sellerEmail = '$sellerEmail' AND sellerPass = '$sellerPass'";
-        $result = $this->db->select($query);
-        if ($result != false) {
-            $value = $result->fetch_assoc();
-            Session::set("Slelogin", true);
-            Session::set("SEmail", $value['sellerEmail']);
+            Session::set("slogin", true);
+            Session::set("SId", $value['sellerId']);
             Session::set("SName", $value['sellerName']);
-            header("Location:dashboard.php");
+            header("Location:deshboard.php");
         } else {
-            $msg = "<span class='error'>Seller Email or Seller Passowrd not matched!</span>";
+            $msg = "<span class='error'>sellerEmail or sellerPassowrd not matched!</span>";
             return $msg;
         }
-    }
+    }*/
 
     public function getSellerData($id)
     {

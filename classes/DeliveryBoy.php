@@ -2,6 +2,7 @@
 $filepath = realpath(dirname(__FILE__));
 include_once($filepath.'/../lib/Database.php');
 include_once($filepath.'/../helpers/Format.php');
+include_once($filepath.'/../lib/Session.php');
  ?>
 <?php 
 
@@ -59,13 +60,12 @@ class DeliveryBoy
         }
     }
 
-    public function dboyLogin($data)
+    public function dboyLogin($dboyEmail, $dboyPass)
     {
-        $dboyEmail  = $this->fm->validation($data['dboyEmail']);
-        $dboyPass   = $this->fm->validation($data['dboyPass']);
-
+        $dboyEmail  = $this->fm->validation($dboyEmail);
+        $dboyPass   = $this->fm->validation($dboyPass);
         $dboyEmail  = mysqli_real_escape_string($this->db->link, $dboyEmail);
-        $dboyPass   = mysqli_real_escape_string($this->db->link, md5($dboyPass));
+        $dboyPass   = mysqli_real_escape_string($this->db->link, $dboyPass);
 
         if (empty($dboyEmail) || empty($dboyPass)) {
             $msg = "<span class='error'>Fields must not be empty!</span>";
@@ -75,10 +75,11 @@ class DeliveryBoy
         $result = $this->db->select($query);
         if ($result != false) {
             $value = $result->fetch_assoc();
-            Session::set("dlogin", true);
-            Session::set("dId", $value['dboyId']);
-            Session::set("dName", $value['dboyName']);
-            header("Location:deshboard.php");
+            Session::set("dboylogin", true);
+            Session::set("dboyId", $value['dboyId']);
+            Session::set("dboyEmail", $value['dboyEmail']);
+            Session::set("dboyPass", $value['dboyPass']);
+            header("Location:dashboard.php");
         } else {
             $msg = "<span class='error'>Delivery Boy Email or Delivery Boy Passowrd not matched!</span>";
             return $msg;
@@ -87,7 +88,7 @@ class DeliveryBoy
 
     public function getDeliveryBoyData($id)
     {
-        $query = "SELECT * FROM tbl_deliveryboys WHERE dboyid = '$id'";
+        $query = "SELECT * FROM tbl_deliveryboys WHERE dboyId = '$id'";
         $result = $this->db->select($query);
         return $result;
     }
